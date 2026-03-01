@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   time.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/28 19:31:30 by bclairot          #+#    #+#             */
-/*   Updated: 2026/02/28 19:31:30 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/02 00:17:10 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/02 00:17:10 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-    #define PARSING_H
-    #include "codexion.h"
+#ifndef TIME_H
+    #define TIME_H
+    
+    #include <sys/time.h>
+    #include <stdlib.h>
 
-    int parsing(t_data *data, int argc, char* argv[]);
-
+    long get_ms(void);
 #endif

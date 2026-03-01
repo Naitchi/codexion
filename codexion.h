@@ -28,6 +28,7 @@
     
     typedef struct s_timer
     {
+        long starting_time;
         int time_to_burnout;
         int time_to_compile;
         int time_to_debug;
@@ -40,7 +41,7 @@
         t_timer timers;
         t_coder *coders;
         int nbr_of_coders;
-        bool *available_dongle; // TODO init cette merde
+        bool *available_dongle;
         bool scheduler_fifo;
         int number_of_compiles_required;
     } t_data;
