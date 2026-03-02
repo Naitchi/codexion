@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   action.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 00:19:01 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 00:19:01 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/02 10:12:21 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/02 10:12:21 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sleep.h"
+#ifndef ACTION_H
+    #define ACTION_H
 
-void ft_sleep(long delay)
-{
-    long end;
-
-    end = get_ms() + delay;
-    while (get_ms() < end)
-        usleep(500);
-}
+    #include "codexion.h"
+    #include "time.h"
+    #include "sleep.h"
+#endif

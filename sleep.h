@@ -14,5 +14,7 @@
     #define SLEEP_H
 
     #include <unistd.h>
-
+    #include "time.h"
+    
+    void ft_sleep(long delay);
 #endif

@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 00:19:01 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 00:19:01 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/02 10:04:38 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/02 10:04:38 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sleep.h"
+#include "free.h"
 
-void ft_sleep(long delay)
+void free_all(t_data data)
 {
-    long end;
-
-    end = get_ms() + delay;
-    while (get_ms() < end)
-        usleep(500);
+    free(data.coders);
+    free(data.available_dongle);
+    return ;
 }

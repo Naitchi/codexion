@@ -15,6 +15,8 @@
     
     #include <sys/time.h>
     #include <stdlib.h>
+    #include "codexion.h"
 
     long get_ms(void);
+    long get_passed_time(t_data data);
 #endif

@@ -39,7 +39,10 @@ static int init_dongles(t_data* data, int nbr_of_coders)
     i = 0;
     data->available_dongle = malloc(sizeof(bool) * nbr_of_coders);
     if (!data->available_dongle)
+    {
+        free(data->coders);
         return error(1, "Problem with the malloc, close some applications and retry.");
+    }
     while (i < nbr_of_coders)
     {
         data->available_dongle[i] = true;

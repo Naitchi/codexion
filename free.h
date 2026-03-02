@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   free.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 00:19:01 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 00:19:01 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/02 10:04:35 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/02 10:04:35 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sleep.h"
+#ifndef FREE_H
+    #define FREE_H
 
-void ft_sleep(long delay)
-{
-    long end;
+    #include "codexion.h"
 
-    end = get_ms() + delay;
-    while (get_ms() < end)
-        usleep(500);
-}
+    void free_all(t_data data)
+#endif

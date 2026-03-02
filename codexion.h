@@ -20,7 +20,7 @@
 
     typedef struct s_coder
     {
-        bool compile;
+        bool compile; // TODO Mettre un autre timer ici pour la derniere fois quil a reset son burnout
         bool debug;
         bool refactor;
         bool burnout;
