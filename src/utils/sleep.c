@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.h                                             :+:      :+:    :+:   */
+/*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 00:17:10 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 00:17:10 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/02 00:19:01 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/03 12:00:02 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TIME_H
-    #define TIME_H
-    
-    #include <sys/time.h>
-    #include <stdlib.h>
-    #include "codexion.h"
+#include "sleep.h"
 
-    long get_ms(void);
-    long get_passed_time(t_data data);
-#endif
+void	ft_sleep(long delay)
+{
+	long	end;
+
+	end = get_ms() + delay;
+	while (get_ms() < end)
+		usleep(500);
+}

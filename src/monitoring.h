@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.h                                             :+:      :+:    :+:   */
+/*   monitoring.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 10:04:35 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 10:04:35 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/03 14:48:41 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/03 15:20:52 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FREE_H
-    #define FREE_H
+#ifndef MONITORING_H
+# define MONITORING_H
 
-    #include "codexion.h"
+# include "codexion.h"
 
-    void free_all(t_data data)
 #endif

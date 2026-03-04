@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   error_handling.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 00:19:01 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 00:19:01 by bclairot         ###   ########.fr       */
+/*   Created: 2026/02/28 14:57:21 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/03 12:00:32 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sleep.h"
+#ifndef ERROR_HANDLING_H
+# define ERROR_HANDLING_H
 
-void ft_sleep(long delay)
-{
-    long end;
+# include <unistd.h>
 
-    end = get_ms() + delay;
-    while (get_ms() < end)
-        usleep(500);
-}
+int	error(int error_code, char *str);
+
+#endif

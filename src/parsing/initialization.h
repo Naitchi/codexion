@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.h                                   :+:      :+:    :+:   */
+/*   initialization.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/28 14:57:21 by bclairot          #+#    #+#             */
-/*   Updated: 2026/02/28 14:57:21 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/01 23:41:14 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/03 12:00:17 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_HANDLING_H
-    #define ERROR_HANDLING_H
-    
-    #include <unistd.h>
+#ifndef INITIALIZATION_H
+# define INITIALIZATION_H
 
-    int error(int error_code, char *str);
+# include "codexion.h"
+# include "error_handling.h"
+# include "verification.h"
 
+int	parsing(t_data *data, int argc, char *argv[]);
 #endif

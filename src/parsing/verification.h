@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.h                                            :+:      :+:    :+:   */
+/*   verification.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 00:20:02 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 00:20:02 by bclairot         ###   ########.fr       */
+/*   Created: 2026/02/28 19:31:30 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/03 11:59:08 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SLEEP_H
-    #define SLEEP_H
+#ifndef VERIFICATION_H
+# define VERIFICATION_H
 
-    #include <unistd.h>
-    #include "time.h"
-    
-    void ft_sleep(long delay);
+# include "error_handling.h"
+# include <stdlib.h>
+# include <string.h>
+
+int	verfication(int argc, char *argv[]);
+
 #endif

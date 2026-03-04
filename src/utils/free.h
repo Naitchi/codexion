@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   free.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 00:07:45 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/02 00:07:45 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/02 10:04:35 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/03 12:00:27 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "time.h"
+#ifndef FREE_H
+# define FREE_H
 
-long get_ms(void) // TODO pas oublier d'init dans la struct quand on lance.
-{
-    struct timeval tv;
-    
-    gettimeofday(&tv, NULL);
-    return (tv.tv_sec / 1000 + tv.tv_usec * 1000);
-}
+# include "codexion.h"
 
-long get_passed_time(t_data data)
-{
-    long rn;
-    rn = get_ms();
-    return (rn - data.timers.starting_time);
-}
+void	free_all(t_data data)
+#endif

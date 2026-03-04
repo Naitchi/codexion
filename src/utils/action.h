@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.c                                   :+:      :+:    :+:   */
+/*   action.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/28 14:53:06 by bclairot          #+#    #+#             */
-/*   Updated: 2026/02/28 14:53:06 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/02 10:12:21 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/03 12:01:06 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error_handling.h"
+#ifndef ACTION_H
+# define ACTION_H
 
-int error(int error_code, char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		str = "Error\n";
-	while (str[i])
-		i++;
-	write(2, str, i);
-    return (error_code); 
-}
-
+# include "codexion.h"
+# include "sleep.h"
+# include "time.h"
+#endif
