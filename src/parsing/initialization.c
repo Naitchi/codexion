@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 23:40:25 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/03 12:00:20 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/04 14:32:49 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	init_coders(t_data *data, int nbr_of_coders)
 	data->nbr_of_coders = nbr_of_coders;
 	data->coders = malloc(sizeof(t_coder) * nbr_of_coders);
 	if (!data->coders)
-		return (error(1, "Problem with the malloc,
+		return (error(1, "Problem with the malloc in init_coders,
 				close some applications and retry."));
 	while (i < nbr_of_coders)
 	{
@@ -42,7 +42,7 @@ static int	init_dongles(t_data *data, int nbr_of_coders)
 	if (!data->available_dongle)
 	{
 		free(data->coders);
-		return (error(1, "Problem with the malloc,
+		return (error(1, "Problem with the malloc in init_dongles,
 				close some applications and retry."));
 	}
 	while (i < nbr_of_coders)
@@ -55,6 +55,7 @@ static int	init_dongles(t_data *data, int nbr_of_coders)
 
 static int	init_data(t_data *data, int argc, char *argv[])
 {
+	data->stop = false;
 	data->nbr_of_coders = atoi(argv[1]);
 	if (init_coders(data, data->nbr_of_coders))
 		return (1);

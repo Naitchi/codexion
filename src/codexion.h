@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:13:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/03 15:48:55 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/04 14:46:27 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_data
 	bool	*available_dongle;
 	bool	scheduler_fifo;
 	int		number_of_compiles_required;
+	bool	stop;
+	pthread_mutex_t stop_mutex;
 }			t_data;
 
 #endif

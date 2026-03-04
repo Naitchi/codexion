@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:13:36 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/04 14:05:00 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/04 14:51:30 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,31 @@ void	print_struct(t_data data)
 	printf("scheduler_fifo: %d\n", data.scheduler_fifo);
 }
 
-void	codexion(t_data data)
+int	codexion(t_data *data)
 {
-	pthread_t	thread_monitoring;
-	pthread_t*	threads;
-	int i;
-	
+	pthread_t	*threads;
+	int			i;
+
 	i = 0;
-	threads = malloc(sizeof(pthread_create) * data.nbr_of_coders);
-	while (i < data.nbr_of_coders)
+	// TODO mettre ca dans une fonction if needed 
+	threads = malloc(sizeof(pthread_t) * data->nbr_of_coders);
+	if (!threads)
 	{
-		pthread_create(&thread[i], NULL, routine(), data); // TODO ici pas bon je passe pas un arg necessaire	
+		free(data->coders);
+		free(data->available_dongle);
+		return (error(1, "Problem with the malloc in codexion (thread"
+				" initialization), close some applications and retry."));
+	}
+	while (i < data->nbr_of_coders)
+	{
+		pthread_create(&threads[i], NULL, routine, data); // TODO ici pas bon je passe pas un arg necessaire
 		i++;
 	}
-	pthread_create(&thread_monitoring, NULL, monitoring(), data); // TODO ici pas bon je passe pas un arg necessaire
+	while(monitoring(data)) // TODO c'est pas bon ca
+	{
+		
+	}
+	cut_everything(threads, data);
 }
 
 int	main(int argc, char *argv[])
@@ -68,6 +79,6 @@ int	main(int argc, char *argv[])
 	if (parsing(&data, argc, argv))
 		return (1);
 	// print_struct(data);
-	codexion(data);
+	codexion(data); // TODO si on met des trucs apres il faut faire un if comme parsing pour return si besoin
 	return (0);
 }
