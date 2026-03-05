@@ -13,7 +13,7 @@
 #ifndef VERIFICATION_H
 # define VERIFICATION_H
 
-# include "error_handling.h"
+# include "error_handling/error_handling.h"
 # include <stdlib.h>
 # include <string.h>
 

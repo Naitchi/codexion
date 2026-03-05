@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   mutex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 09:51:36 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/03 12:00:05 by bclairot         ###   ########.fr       */
+/*   Created: 2026/03/05 16:19:05 by bclairot          #+#    #+#             */
+/*   Updated: 2026/03/05 16:19:05 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
+#ifndef MUTEX_H
+# define MUTEX_H
 
 # include "codexion.h"
-# include "utils/action.h"
-# include "utils/mutex.h"
 
-void*	routine(void* arg);
-
+void    set_stop(t_data *data);
+bool    get_stop(t_data *data);
 #endif

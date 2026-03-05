@@ -13,9 +13,10 @@
 #ifndef INITIALIZATION_H
 # define INITIALIZATION_H
 
-# include "codexion.h"
-# include "error_handling.h"
+# include "../codexion.h"
+# include "error_handling/error_handling.h"
 # include "verification.h"
+# include "allocation.h"
 
 int	parsing(t_data *data, int argc, char *argv[]);
 #endif

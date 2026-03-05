@@ -12,7 +12,7 @@
 
 #include "time.h"
 
-long	get_ms(void) // TODO pas oublier d'init starting_time dans la struct quand on lance.
+long	get_ms(void)
 {
 	struct timeval	tv;
 
@@ -21,10 +21,10 @@ long	get_ms(void) // TODO pas oublier d'init starting_time dans la struct quand 
 }
 
 // TODO pas sur que ce soit bien ca a voir
-long	get_passed_time(t_data data)
+long	get_passed_time(t_data *data)
 {
 	long	rn;
 
 	rn = get_ms();
-	return (rn - data.starting_time);
+	return (rn - data->starting_time);
 }

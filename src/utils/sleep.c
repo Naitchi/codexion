@@ -14,9 +14,9 @@
 
 void	ft_sleep(long delay)
 {
-	long	end;
+	// long	end;
 
-	end = get_ms() + delay;
-	while (get_ms() < end)
-		usleep(500);
+	// end = get_ms() + delay;
+	// while (get_ms() < end)
+		usleep(delay);
 }

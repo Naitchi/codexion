@@ -12,48 +12,7 @@
 
 #include "initialization.h"
 
-static int	init_coders(t_data *data, int nbr_of_coders)
-{
-	int	i;
-
-	i = 0;
-	data->nbr_of_coders = nbr_of_coders;
-	data->coders = malloc(sizeof(t_coder) * nbr_of_coders);
-	if (!data->coders)
-		return (error(1, "Problem with the malloc in init_coders,
-				close some applications and retry."));
-	while (i < nbr_of_coders)
-	{
-		data->coders[i].compile = false;
-		data->coders[i].debug = false;
-		data->coders[i].refactor = false;
-		data->coders[i].burnout = false;
-		i++;
-	}
-	return (0);
-}
-
-static int	init_dongles(t_data *data, int nbr_of_coders)
-{
-	int	i;
-
-	i = 0;
-	data->available_dongle = malloc(sizeof(bool) * nbr_of_coders);
-	if (!data->available_dongle)
-	{
-		free(data->coders);
-		return (error(1, "Problem with the malloc in init_dongles,
-				close some applications and retry."));
-	}
-	while (i < nbr_of_coders)
-	{
-		data->available_dongle[i] = true;
-		i++;
-	}
-	return (0);
-}
-
-static int	init_data(t_data *data, int argc, char *argv[])
+static int	init_data(t_data *data, char *argv[])
 {
 	data->stop = false;
 	data->nbr_of_coders = atoi(argv[1]);
@@ -81,7 +40,8 @@ int	parsing(t_data *data, int argc, char *argv[])
 	error = verfication(argc, argv);
 	if (error)
 		return (1);
-	error = init_data(data, argc, argv);
+	error = init_data(data, argv);
 	if (error)
 		return (1);
+	return (0);
 }

@@ -18,8 +18,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include "initialization.h"
-# include "routine.h"
 
 typedef struct s_coder
 {
@@ -52,5 +50,15 @@ typedef struct s_data
 	bool	stop;
 	pthread_mutex_t stop_mutex;
 }			t_data;
+
+typedef struct s_thread_data
+{
+	int 	index_coder;
+	t_data 	*data;
+} 			t_thread_data;
+
+# include "parsing/initialization.h"
+# include "routine.h"
+# include "monitoring.h"
 
 #endif

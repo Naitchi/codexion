@@ -14,5 +14,9 @@
 # define MONITORING_H
 
 # include "codexion.h"
+# include "utils/mutex.h"
+
+void	monitoring(t_data *data);
+void    cut_everything(pthread_t *threads, t_data* data);
 
 #endif

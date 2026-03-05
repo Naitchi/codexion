@@ -21,6 +21,7 @@ void	print_struct(t_data data)
 	while (i < data.nbr_of_coders)
 	{
 		printf("coder n-%d:\n", i);
+		printf("number_of_compiles_done: %d\n", data.coders[i].number_of_compiles_done);
 		printf("compile: %d\n", data.coders[i].compile);
 		printf("debug: %d\n", data.coders[i].debug);
 		printf("refactor: %d\n", data.coders[i].refactor);
@@ -46,29 +47,25 @@ void	print_struct(t_data data)
 
 int	codexion(t_data *data)
 {
-	pthread_t	*threads;
-	int			i;
+	int				i;
+	pthread_t		*threads;
+	t_thread_data 	*threads_data;
 
 	i = 0;
-	// TODO mettre ca dans une fonction if needed 
-	threads = malloc(sizeof(pthread_t) * data->nbr_of_coders);
-	if (!threads)
-	{
-		free(data->coders);
-		free(data->available_dongle);
-		return (error(1, "Problem with the malloc in codexion (thread"
-				" initialization), close some applications and retry."));
-	}
+	// TODO peut-etre fuse les deux sachant qu'elles sont dependante que dans le free, a voir
+	if(init_threads(data, &threads))
+		return (1);
+	if(init_threads_data(data, &threads, &threads_data))
+		return (1);
+	data->starting_time = get_ms();
 	while (i < data->nbr_of_coders)
 	{
-		pthread_create(&threads[i], NULL, routine, data); // TODO ici pas bon je passe pas un arg necessaire
+		pthread_create(&threads[i], NULL, routine, &threads_data[i]);
 		i++;
 	}
-	while(monitoring(data)) // TODO c'est pas bon ca
-	{
-		
-	}
+	monitoring(data);
 	cut_everything(threads, data);
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -79,6 +76,7 @@ int	main(int argc, char *argv[])
 	if (parsing(&data, argc, argv))
 		return (1);
 	// print_struct(data);
-	codexion(data); // TODO si on met des trucs apres il faut faire un if comme parsing pour return si besoin
+	if (codexion(&data))
+		return (1);
 	return (0);
 }

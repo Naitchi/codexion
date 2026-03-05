@@ -26,18 +26,19 @@ void	monitoring(t_data *data)
 		{
 			if (data->coders[i].starting_time >= data->timers.time_to_burnout)
 			{
-				pthread_mutex_lock(&data->stop_mutex); // TODO bien envie de mettre ca dans une fonction
-				data->stop = true;
-				pthread_mutex_unlock(&data->stop_mutex);
+				printf("BURNOUT\n");
+				set_stop(data);
 			}
 			if (data->coders[i].number_of_compiles_done >= data->number_of_compiles_required)
+			{	
 				coders_done++;
+			}
 			i++;
 		}
+		// printf("coders_done: %d\n",coders_done);
 	}
-	pthread_mutex_lock(&data->stop_mutex); // TODO et la reutiliser la (s/o line 29)
-	data->stop = true;
-	pthread_mutex_unlock(&data->stop_mutex);
+	printf("DONE\n");
+	set_stop(data);
 }
 
 void cut_everything(pthread_t *threads, t_data* data)
