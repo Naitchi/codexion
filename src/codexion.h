@@ -26,7 +26,7 @@ typedef struct s_coder
 	bool	compile;
 	bool	debug;
 	bool	refactor;
-	bool	burnout;
+	bool	burnout; // TODO supprimer toutes les bool ou alors mettre les timings a la place comme ca moins de mutex a faire
 }			t_coder;
 
 typedef struct s_timer
@@ -46,9 +46,9 @@ typedef struct s_data
 	int		nbr_of_coders;
 	bool	*available_dongle;
 	bool	scheduler_fifo;
-	int		number_of_compiles_required;
+	int		number_of_compiles_required; // mutex
 	bool	stop;
-	pthread_mutex_t stop_mutex;
+	pthread_mutex_t stop_mutex; // TODO faire une structure seulement pour les mutex (surement une mirroir mais avec certaine en moins)
 }			t_data;
 
 typedef struct s_thread_data

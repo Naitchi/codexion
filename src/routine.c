@@ -43,7 +43,7 @@ void*	routine(void* arg)
 	l_dongle = index_coder - 1;
 	if (!index_coder)
 		l_dongle = data->nbr_of_coders - 1;
-	while (!get_stop(data) && data->coders[index_coder].number_of_compiles_done <= data->number_of_compiles_required)
+	while (!get_stop(data) && data->coders[index_coder].number_of_compiles_done <= data->number_of_compiles_required) // TODO refactoriser cette merde, je vais qu'on check tout le temps si le code doit se stop
 	{
 		if (is_dongles_available(data, index_coder))
 		{
