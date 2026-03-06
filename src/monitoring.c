@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 14:48:44 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/04 14:54:27 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/06 14:57:20 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ void	monitoring(t_data *data)
 				printf("BURNOUT\n");
 				set_stop(data);
 			}
-			if (data->coders[i].number_of_compiles_done >= data->number_of_compiles_required)
-			{	
+			if (get_compilation_nbr(&data->coders[i]) >= data->number_of_compiles_required)
 				coders_done++;
-			}
 			i++;
 		}
 		// printf("coders_done: %d\n",coders_done);

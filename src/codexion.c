@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:13:36 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/04 14:51:30 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/06 16:12:25 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_struct(t_data data)
 	i = 0;
 	while (i < data.nbr_of_coders)
 	{
-		printf("dongle n-%d: %d\n", i, data.available_dongle[i]);
+		printf("dongle n-%d: %d\n", i, data.dongle[i].available);
 		i++;
 	}
 	printf("\nstarting_time: %ld\n", data.starting_time);

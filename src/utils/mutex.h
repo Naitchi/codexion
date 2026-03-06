@@ -17,4 +17,6 @@
 
 void    set_stop(t_data *data);
 bool    get_stop(t_data *data);
+int     get_compilation_nbr(t_coder *coder);
+void    inc_compilation_nbr(t_coder *coder);
 #endif

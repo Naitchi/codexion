@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 18:34:40 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/05 18:34:40 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/06 16:33:36 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	init_coders(t_data *data, int nbr_of_coders)
 				"close some applications and retry."));
 	while (i < nbr_of_coders)
 	{
+		data->coders[i].number_of_compiles_done = 0;
+		pthread_mutex_init(&data->coders[i].number_of_compiles_mutex, NULL);
 		data->coders[i].compile = false;
 		data->coders[i].debug = false;
 		data->coders[i].refactor = false;
@@ -38,8 +40,8 @@ int	init_dongles(t_data *data, int nbr_of_coders)
 	int	i;
 
 	i = 0;
-	data->available_dongle = malloc(sizeof(bool) * nbr_of_coders);
-	if (!data->available_dongle)
+	data->dongle = malloc(sizeof(t_dongle) * nbr_of_coders);
+	if (!data->dongle)
 	{
 		free(data->coders);
 		return (error(1, "Problem with the malloc in init_dongles, "
@@ -47,7 +49,8 @@ int	init_dongles(t_data *data, int nbr_of_coders)
 	}
 	while (i < nbr_of_coders)
 	{
-		data->available_dongle[i] = true;
+		data->dongle[i].available = true;
+		pthread_mutex_init(&data->dongle[i].mutex_dongle, NULL);
 		i++;
 	}
 	return (0);
@@ -59,7 +62,7 @@ int init_threads(t_data *data, pthread_t **threads)
 	if (!(*threads))
 	{
 		free(data->coders);
-		free(data->available_dongle);
+		free(data->dongle);
 		return (error(1, "Problem with the malloc in init_threads,"
 			" close some applications and retry."));
 	}
@@ -76,7 +79,7 @@ int init_threads_data(t_data *data, pthread_t **threads, t_thread_data **threads
 	{
 		free(*threads);
 		free(data->coders);
-		free(data->available_dongle);
+		free(data->dongle);
 		return (error(1, "Problem with the malloc in init_threads_data,"
 			" close some applications and retry."));
 	}
