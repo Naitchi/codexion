@@ -26,7 +26,9 @@ int	init_coders(t_data *data, int nbr_of_coders)
 	{
 		data->coders[i].number_of_compiles_done = 0;
 		pthread_mutex_init(&data->coders[i].number_of_compiles_mutex, NULL);
-		data->coders[i].compile = false;
+		data->coders[i].starting_time = get_ms();
+		pthread_mutex_init(&data->coders[i].starting_time_mutex, NULL);
+		data->coders[i].compile = false; // TODO delete si on a delete dans le codexion.h
 		data->coders[i].debug = false;
 		data->coders[i].refactor = false;
 		data->coders[i].burnout = false;

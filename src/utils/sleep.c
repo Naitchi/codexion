@@ -12,6 +12,7 @@
 
 #include "sleep.h"
 
+// TODO fuze with time at the end of the project
 void	ft_sleep(long delay)
 {
 	long	end;

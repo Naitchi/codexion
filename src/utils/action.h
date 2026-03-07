@@ -17,7 +17,6 @@
 # include "sleep.h"
 # include "time.h"
 
-void	toggle_dongles(t_data *data, int index_coder, int index_l, int index_r);
 void	action(t_data *data, int index_coder, char *annonce, int time);
 
 #endif

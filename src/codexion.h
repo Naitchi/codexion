@@ -24,6 +24,7 @@ typedef struct s_coder
 	int				number_of_compiles_done;
 	pthread_mutex_t	number_of_compiles_mutex;
 	long			starting_time;
+	pthread_mutex_t	starting_time_mutex;
 	bool			compile;
 	bool			debug;
 	bool			refactor;
@@ -57,7 +58,6 @@ typedef struct s_data
 	int 			number_of_compiles_required;
 	bool			stop;
 	pthread_mutex_t	stop_mutex;
-	// TODO faire une structure seulement pour les mutex (surement une mirroir mais avec certaine en moins)
 }					t_data;
 
 typedef struct s_thread_data

@@ -12,6 +12,7 @@
 
 #include "free.h"
 
+// TODO move the file to parsing/
 void	free_all(t_data data, pthread_t* threads)
 {
 	free(threads);

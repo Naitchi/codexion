@@ -18,24 +18,23 @@ void	monitoring(t_data *data)
 	int	coders_done;
 
 	coders_done = 0;
-	while (coders_done < data->nbr_of_coders)
+	while (!get_stop(data) && coders_done < data->nbr_of_coders)
 	{
 		coders_done = 0;
 		i = 0;
 		while (i < data->nbr_of_coders)
 		{
-			if (data->coders[i].starting_time >= data->timers.time_to_burnout)
+			if (get_passed_time(get_starting_time(&data->coders[i])) >= data->timers.time_to_burnout)
 			{
-				printf("BURNOUT\n");
+				printf("%ld %d burned out\n", get_passed_time(data->starting_time), i + 1);
 				set_stop(data);
 			}
 			if (get_compilation_nbr(&data->coders[i]) >= data->number_of_compiles_required)
 				coders_done++;
 			i++;
 		}
-		// printf("coders_done: %d\n",coders_done);
 	}
-	printf("DONE\n");
+	printf("%ld DONE\n", get_passed_time(data->starting_time));
 	set_stop(data);
 }
 

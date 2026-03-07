@@ -18,5 +18,5 @@
 # include <sys/time.h>
 
 long	get_ms(void);
-long	get_passed_time(t_data *data);
+long	get_passed_time(long starting_time);
 #endif

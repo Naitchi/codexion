@@ -20,11 +20,10 @@ long	get_ms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-// TODO pas sur que ce soit bien ca a voir
-long	get_passed_time(t_data *data)
+long	get_passed_time(long starting_time)
 {
 	long	rn;
 
 	rn = get_ms();
-	return (rn - data->starting_time);
+	return (rn - starting_time);
 }

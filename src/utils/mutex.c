@@ -47,4 +47,23 @@ void inc_compilation_nbr(t_coder *coder)
     pthread_mutex_lock(&coder->number_of_compiles_mutex);
     coder->number_of_compiles_done++;
     pthread_mutex_unlock(&coder->number_of_compiles_mutex);
+	set_starting_time(coder);
+}
+
+long get_starting_time(t_coder *coder)
+{
+    long time; 
+
+    time = 0;
+    pthread_mutex_lock(&coder->starting_time_mutex);
+    time = coder->starting_time;
+    pthread_mutex_unlock(&coder->starting_time_mutex);
+    return (time);
+}
+
+void set_starting_time(t_coder *coder)
+{
+    pthread_mutex_lock(&coder->starting_time_mutex);
+    coder->starting_time = get_ms();
+    pthread_mutex_unlock(&coder->starting_time_mutex);
 }
