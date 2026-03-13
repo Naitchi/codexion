@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:13:36 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/06 16:12:25 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/13 11:40:40 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void	print_struct(t_data data)
 	while (i < data.nbr_of_coders)
 	{
 		printf("coder n-%d:\n", i);
-		printf("number_of_compiles_done: %d\n", data.coders[i].number_of_compiles_done);
-		printf("compile: %d\n", data.coders[i].compile);
-		printf("debug: %d\n", data.coders[i].debug);
-		printf("refactor: %d\n", data.coders[i].refactor);
-		printf("burnout: %d\n\n", data.coders[i].burnout);
+		printf("number_of_compiles_done: %d\n",
+			data.coders[i].number_of_compiles_done);
 		i++;
 	}
 	i = 0;
@@ -49,23 +46,28 @@ int	codexion(t_data *data)
 {
 	int				i;
 	pthread_t		*threads;
-	t_thread_data 	*threads_data;
+	pthread_t		thread_monitoring;
+	t_thread_data	*threads_data;
+	int code;
 
 	i = 0;
-	// TODO peut-etre fuse les deux sachant qu'elles sont dependante que dans le free, a voir
-	if(init_threads(data, &threads))
+	code = 0;
+	if (init_threads(data, &threads))
 		return (1);
-	if(init_threads_data(data, &threads, &threads_data))
+	if (init_threads_data(data, &threads, &threads_data))
 		return (1);
 	data->starting_time = get_ms();
-	while (i < data->nbr_of_coders) // TODO init pair par pair puis impair par impair pour opti
+	while (i < data->nbr_of_coders)	// TODO init pair par pair puis impair par impair pour opti
 	{
-		pthread_create(&threads[i], NULL, routine, &threads_data[i]);
+		if (pthread_create(&threads[i], NULL, routine, &threads_data[i]) != 0)
+			code = cut_everything(threads, data, NULL, 1);
 		i++;
 	}
-	monitoring(data);
-	cut_everything(threads, data);
-	return (0);
+	if (pthread_create(&thread_monitoring, NULL, monitoring, data) != 0)
+		code = cut_everything(threads, data, NULL, 1);
+	code = cut_everything(threads, data, &thread_monitoring, 0);
+	free_all(threads, data, threads_data);
+	return (code);
 }
 
 int	main(int argc, char *argv[])

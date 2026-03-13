@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 23:40:25 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/06 12:42:49 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/10 15:22:56 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	init_data(t_data *data, char *argv[])
 {
 	data->stop = false;
 	pthread_mutex_init(&data->stop_mutex, NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
 	data->nbr_of_coders = atoi(argv[1]);
 	if (init_coders(data, data->nbr_of_coders))
 		return (1);

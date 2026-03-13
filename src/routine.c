@@ -23,10 +23,10 @@ int take_dongles(t_data *data, int first, int second, int index_coder)
 	if (data->dongle[second].available && data->dongle[first].available)
 	{
 		data->dongle[second].available = !data->dongle[second].available;
-		printf("%ld %d has taken a dongle\n", get_passed_time(data->starting_time),
+		printf("%ld %d has taken a dongle\n", get_passed_time(data),
 		index_coder + 1);
 		data->dongle[first].available = !data->dongle[first].available;
-		printf("%ld %d has taken a dongle\n", get_passed_time(data->starting_time),
+		printf("%ld %d has taken a dongle\n", get_passed_time(data),
 		index_coder + 1);
 		rslt = 1;
 	}
@@ -94,12 +94,12 @@ void*	routine(void* arg)
 	t_data *data = obj->data; 
 	int	l_dongle;
 
-	set_starting_time(&data->coders[index_coder]);
+	// TODO mettre a jour coder.starting_time pour que le burnout marche !
 	l_dongle = index_coder - 1;
 	if (!index_coder)
 		l_dongle = data->nbr_of_coders - 1;
 	while (!get_stop(data) && 
-			get_compilation_nbr(&data->coders[index_coder]) < data->number_of_compiles_required) 
+			get_compilation_nbr(&data->coders[index_coder]) <= data->number_of_compiles_required) 
 	{
 		if (is_dongles_available(data, index_coder))
 		{
@@ -107,10 +107,9 @@ void*	routine(void* arg)
 			let_go_dongles(data, index_coder);
 			action(data, index_coder, "is debugging", data->timers.time_to_debug);
 			action(data, index_coder, "is refactoring", data->timers.time_to_refactor);
-	
 			inc_compilation_nbr(&data->coders[index_coder]);
 		}
 	}
-	printf("coder returning\n");
+	printf("coder done\n");
 	return (NULL);
 }

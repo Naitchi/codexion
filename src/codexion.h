@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:13:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/06 16:10:08 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/13 11:41:41 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ typedef struct s_coder
 	pthread_mutex_t	number_of_compiles_mutex;
 	long			starting_time;
 	pthread_mutex_t	starting_time_mutex;
-	bool			compile;
-	bool			debug;
-	bool			refactor;
-	bool			burnout;
-	// TODO supprimer toutes les bool ou alors mettre les timings a la place comme ca moins de mutex a faire
 }					t_coder;
 
 typedef struct s_timer
@@ -58,6 +53,7 @@ typedef struct s_data
 	int 			number_of_compiles_required;
 	bool			stop;
 	pthread_mutex_t	stop_mutex;
+	pthread_mutex_t print_mutex;
 }					t_data;
 
 typedef struct s_thread_data
@@ -69,5 +65,6 @@ typedef struct s_thread_data
 # include "monitoring.h"
 # include "parsing/initialization.h"
 # include "routine.h"
+# include "utils/free.h"
 
 #endif

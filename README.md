@@ -72,5 +72,7 @@ Additional sections (usage examples, technical choices) are included above.
 
 ---
 
-For more information, consult the project subject provided by the 42 staff or
-review the source files in the `coders/` directory.
+<!-- For more information, consult the project subject provided by the 42 staff or
+review the source files in the `coders/` directory. -->
+
+$ make && clear && ./codexion 4 500 200 100 150 5 0 fifo

@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:04:35 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/04 14:16:03 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/13 11:31:35 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 # include "codexion.h"
 
-void	free_all(t_data data, pthread_t *threads);
+void	free_all( pthread_t* threads, t_data* data, t_thread_data* threads_data);
 #endif
