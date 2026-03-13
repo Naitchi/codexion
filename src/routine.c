@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 09:51:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/06 18:50:30 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/13 15:28:33 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int take_dongles(t_data *data, int first, int second, int index_coder)
 	if (data->dongle[second].available && data->dongle[first].available)
 	{
 		data->dongle[second].available = !data->dongle[second].available;
-		printf("%ld %d has taken a dongle\n", get_passed_time(data),
+		printf("%ld %d has taken a dongle\n", get_passed_time(data->starting_time),
 		index_coder + 1);
 		data->dongle[first].available = !data->dongle[first].available;
-		printf("%ld %d has taken a dongle\n", get_passed_time(data),
+		printf("%ld %d has taken a dongle\n", get_passed_time(data->starting_time),
 		index_coder + 1);
 		rslt = 1;
 	}
