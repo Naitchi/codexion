@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 18:34:40 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/13 11:39:47 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/14 13:23:26 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	init_dongles(t_data *data, int nbr_of_coders)
 	while (i < nbr_of_coders)
 	{
 		data->dongle[i].available = true;
+		data->dongle[i].available_time = 0;
 		pthread_mutex_init(&data->dongle[i].mutex_dongle, NULL);
 		i++;
 	}

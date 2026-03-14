@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 00:19:01 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/06 18:34:18 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/14 13:54:28 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	ft_sleep(long delay)
 
 	end = get_ms() + delay;
 	while (get_ms() < end)
-		usleep(200);
+		usleep(100);
 }

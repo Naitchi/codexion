@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:13:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/13 11:41:41 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/03/14 13:21:44 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_timer
 typedef struct s_dongle
 {
 	bool			available;
+	long			available_time;
 	pthread_mutex_t	mutex_dongle;
 }					t_dongle;
 
@@ -50,10 +51,10 @@ typedef struct s_data
 	int				nbr_of_coders;
 	t_dongle		*dongle;
 	bool			scheduler_fifo;
-	int 			number_of_compiles_required;
+	int				number_of_compiles_required;
 	bool			stop;
 	pthread_mutex_t	stop_mutex;
-	pthread_mutex_t print_mutex;
+	pthread_mutex_t	print_mutex;
 }					t_data;
 
 typedef struct s_thread_data
