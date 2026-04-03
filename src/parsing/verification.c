@@ -48,7 +48,7 @@ int	verfication(int argc, char *argv[])
 				"dongle_cooldown scheduler\n"));
 	while (i < argc)
 	{
-		if (i == 8 && strcmp(argv[i], "fifo") && strcmp(argv[i], "edf")) // TODO check si ca marche bien, ca marchait avec "fif\o" alors que c'est pas sense etre le cas
+		if (i == 8 && strcmp(argv[i], "fifo") && strcmp(argv[i], "edf"))
 			return (error(1, "The scheduler can only be edf or fifo.\n"));
 		else if (i != 8 && check_if_int_positif(argv[i]))
 			return (error(1, "Timer/number should be numbers in int range.\n"));
