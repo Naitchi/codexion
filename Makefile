@@ -1,7 +1,7 @@
 NAME = codexion
 
 CC = cc
-FLAGS = -pthread -MMD -MP -g3 -I$(SRC)
+FLAGS = -pthread -MMD -MP -g3 -I $(SRC)
 
 # Folders
 BUILD = build
