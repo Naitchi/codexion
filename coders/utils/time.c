@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "time.h"
+#include "utils.h"
 
 long	get_ms(void)
 {
@@ -26,4 +26,31 @@ long	get_passed_time(long starting_time)
 
 	rn = get_ms();
 	return (rn - starting_time);
+}
+
+long get_starting_time(t_coder *coder)
+{
+    long time; 
+
+    time = 0;
+    pthread_mutex_lock(&coder->starting_time_mutex);
+    time = coder->starting_time;
+    pthread_mutex_unlock(&coder->starting_time_mutex);
+    return (time);
+}
+
+void set_starting_time(t_coder *coder)
+{
+    pthread_mutex_lock(&coder->starting_time_mutex);
+    coder->starting_time = get_ms();
+    pthread_mutex_unlock(&coder->starting_time_mutex);
+}
+
+void	ft_sleep(long delay)
+{
+	long	end;
+
+	end = get_ms() + delay;
+	while (get_ms() < end)
+		usleep(100);
 }

@@ -5,12 +5,14 @@ FLAGS = -pthread -MMD -MP -g3 -I$(SRC)
 
 # Folders
 BUILD = build
-SRC = src
+SRC = coders
 
 # Files
 SRCS = \
 	codexion.c \
 	routine.c \
+	routine_flow.c \
+	routine_dongles.c \
 	monitoring.c \
 	error_handling/error_handling.c \
 	parsing/initialization.c \

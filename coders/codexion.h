@@ -63,9 +63,19 @@ typedef struct s_thread_data
 	t_data			*data;
 }					t_thread_data;
 
-# include "monitoring.h"
-# include "parsing/initialization.h"
-# include "routine.h"
-# include "utils/free.h"
+# include "parsing/parsing.h"
+# include "utils/utils.h"
+
+int					codexion(t_data *data);
+void					*monitoring(void *arg);
+int					cut_everything(pthread_t *threads, t_data *data,
+						pthread_t *monitoring_thread, int code);
+bool				edf(t_data *data, int first, int second, int index_coder);
+int					take_dongles(t_data *data, int first, int second,
+						int index_coder);
+int					is_dongles_available(t_data *data, int index_coder);
+void					turn_dongles_in(t_data *data, int first, int second);
+void					let_go_dongles(t_data *data, int index_coder);
+void					*routine(void *arg);
 
 #endif

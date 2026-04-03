@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include "utils.h"
 
-// TODO move the file to parsing/
 void	free_all(pthread_t* threads, t_data* data, t_thread_data* threads_data)
 {
     int	i;

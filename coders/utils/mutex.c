@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mutex.h"
+#include "utils.h"
 
-bool get_stop(t_data *data) // TODO faire un fichier setter / getter car trop de fonctions
+bool get_stop(t_data *data)
 {
     bool stop; 
 
@@ -48,20 +48,3 @@ void inc_compilation_nbr(t_coder *coder)
     pthread_mutex_unlock(&coder->number_of_compiles_mutex);
 }
 
-long get_starting_time(t_coder *coder)
-{
-    long time; 
-
-    time = 0;
-    pthread_mutex_lock(&coder->starting_time_mutex);
-    time = coder->starting_time;
-    pthread_mutex_unlock(&coder->starting_time_mutex);
-    return (time);
-}
-
-void set_starting_time(t_coder *coder)
-{
-    pthread_mutex_lock(&coder->starting_time_mutex);
-    coder->starting_time = get_ms();
-    pthread_mutex_unlock(&coder->starting_time_mutex);
-}

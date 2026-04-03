@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "allocation.h"
+#include "parsing.h"
 
 int	init_coders(t_data *data, int nbr_of_coders)
 {

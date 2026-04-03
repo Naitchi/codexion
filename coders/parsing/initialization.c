@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "parsing.h"
 
 static int	init_data(t_data *data, char *argv[])
 {

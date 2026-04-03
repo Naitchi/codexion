@@ -27,7 +27,7 @@ int	codexion(t_data *data)
 	if (init_threads_data(data, &threads, &threads_data))
 		return (1);
 	data->starting_time = get_ms();
-	while (i < data->nbr_of_coders)	// TODO init pair par pair puis impair par impair pour opti
+	while (i < data->nbr_of_coders)
 	{
 		if (pthread_create(&threads[i], NULL, routine, &threads_data[i]) != 0)
 			code = cut_everything(threads, data, NULL, 1);
