@@ -61,6 +61,32 @@ bool	edf(t_data *data, int first, int second, int index_coder)
 	return (true);
 }
 
+static bool	can_take_dongles(t_data *data, int first, int second, int index_coder)
+{
+	if (!data->dongle[second].available)
+		return (false);
+	if (!data->dongle[first].available)
+		return (false);
+	if (data->dongle[second].available_time >= get_ms())
+		return (false);
+	if (data->dongle[first].available_time >= get_ms())
+		return (false);
+	if (!edf(data, first, second, index_coder))
+		return (false);
+	return (true);
+}
+
+static void	pick_dongles(t_data *data, int first, int second, int index_coder)
+{
+	set_starting_time(&data->coders[index_coder]);
+	data->dongle[second].available = !data->dongle[second].available;
+	printf("%ld %d has taken a dongle\n",
+		get_passed_time(data->starting_time), index_coder + 1);
+	data->dongle[first].available = !data->dongle[first].available;
+	printf("%ld %d has taken a dongle\n",
+		get_passed_time(data->starting_time), index_coder + 1);
+}
+
 // TODO je pourrais faire un fichier dongle.c si besoin
 int	take_dongles(t_data *data, int first, int second, int index_coder)
 {
@@ -70,19 +96,9 @@ int	take_dongles(t_data *data, int first, int second, int index_coder)
 	if (!pthread_mutex_lock(&data->dongle[second].mutex_dongle)
 		&& !pthread_mutex_lock(&data->dongle[first].mutex_dongle))
 	{
-		if (data->dongle[second].available
-			&& data->dongle[second].available_time < get_ms()
-			&& data->dongle[first].available_time < get_ms()
-			&& data->dongle[first].available
-			&& edf(data, first, second, index_coder))
+		if (can_take_dongles(data, first, second, index_coder))
 		{
-			set_starting_time(&data->coders[index_coder]);
-			data->dongle[second].available = !data->dongle[second].available;
-			printf("%ld %d has taken a dongle\n",
-				get_passed_time(data->starting_time), index_coder + 1);
-			data->dongle[first].available = !data->dongle[first].available;
-			printf("%ld %d has taken a dongle\n",
-				get_passed_time(data->starting_time), index_coder + 1);
+			pick_dongles(data, first, second, index_coder);
 			rslt = 1;
 		}
 	}
@@ -132,33 +148,38 @@ void let_go_dongles(t_data *data, int index_coder)
 		turn_dongles_in(data, l_dongle, r_dongle);
 }
 
+static void	compile_cycle(t_data *data, int index_coder)
+{
+	action(data, index_coder, "is compiling", data->timers.time_to_compile);
+	let_go_dongles(data, index_coder);
+	action(data, index_coder, "is debugging", data->timers.time_to_debug);
+	action(data, index_coder, "is refactoring", data->timers.time_to_refactor);
+	inc_compilation_nbr(&data->coders[index_coder]);
+}
+
+static bool	keep_routine_running(t_data *data, int index_coder)
+{
+	if (get_stop(data))
+		return (false);
+	if (get_compilation_nbr(&data->coders[index_coder])
+		> data->number_of_compiles_required)
+		return (false);
+	return (true);
+}
+
 void	*routine(void *arg)
 {
 	t_thread_data	*obj;
 	int				index_coder;
 	t_data			*data;
-	int				l_dongle;
 
 	obj = (t_thread_data *)arg;
 	index_coder = obj->index_coder;
 	data = obj->data;
-	l_dongle = index_coder - 1;
-	if (!index_coder)
-		l_dongle = data->nbr_of_coders - 1;
-	while (!get_stop(data)
-		&& get_compilation_nbr(&data->coders[index_coder]) <= data->number_of_compiles_required)
+	while (keep_routine_running(data, index_coder))
 	{
 		if (is_dongles_available(data, index_coder))
-		{
-			action(data, index_coder, "is compiling",
-				data->timers.time_to_compile); // TODO peut etre mettre le turn_dongles_in dans la fonction avec un if str = is compiling pour gagner une ligne et mettre a jour le starting time du coder aussi ?
-			let_go_dongles(data, index_coder);
-			action(data, index_coder, "is debugging",
-				data->timers.time_to_debug);
-			action(data, index_coder, "is refactoring",
-				data->timers.time_to_refactor);
-			inc_compilation_nbr(&data->coders[index_coder]);
-		}
+			compile_cycle(data, index_coder);
 	}
 	return (NULL);
 }
