@@ -21,7 +21,6 @@ SRCS = \
 	utils/action.c \
 	utils/free.c \
 	utils/time.c \
-	utils/sleep.c \
 	utils/mutex.c
 
 OBJS := $(SRCS:%.c=$(BUILD)/%.o)
