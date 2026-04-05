@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 23:40:25 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/10 15:22:56 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/05 11:10:12 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	init_data(t_data *data, char *argv[])
 	data->timers.time_to_compile = atoi(argv[3]);
 	data->timers.time_to_debug = atoi(argv[4]);
 	data->timers.time_to_refactor = atoi(argv[5]);
-	data->number_of_compiles_required = atoi(argv[6]);
+	data->compiles_required = atoi(argv[6]);
 	data->timers.dongle_cooldown = atoi(argv[7]);
 	if (!strcmp(argv[8], "fifo"))
 		data->scheduler_fifo = true;

@@ -6,14 +6,15 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 18:12:52 by bclairot          #+#    #+#             */
-/*   Updated: 2026/04/03 18:12:52 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/05 11:44:37 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "../codexion.h"
+# include "../codexion_types.h"
+# include "../utils/utils.h"
 # include "error_handling/error_handling.h"
 # include <stdlib.h>
 # include <string.h>

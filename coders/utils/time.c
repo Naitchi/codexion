@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 00:07:45 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/06 15:09:43 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/05 11:01:37 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long	get_ms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-long	get_passed_time(long starting_time)
+long	get_p_t(long starting_time)
 {
 	long	rn;
 
@@ -28,22 +28,22 @@ long	get_passed_time(long starting_time)
 	return (rn - starting_time);
 }
 
-long get_starting_time(t_coder *coder)
+long	get_s_t(t_coder *coder)
 {
-    long time; 
+	long	time;
 
-    time = 0;
-    pthread_mutex_lock(&coder->starting_time_mutex);
-    time = coder->starting_time;
-    pthread_mutex_unlock(&coder->starting_time_mutex);
-    return (time);
+	time = 0;
+	pthread_mutex_lock(&coder->starting_time_mutex);
+	time = coder->starting_time;
+	pthread_mutex_unlock(&coder->starting_time_mutex);
+	return (time);
 }
 
-void set_starting_time(t_coder *coder)
+void	set_starting_time(t_coder *coder)
 {
-    pthread_mutex_lock(&coder->starting_time_mutex);
-    coder->starting_time = get_ms();
-    pthread_mutex_unlock(&coder->starting_time_mutex);
+	pthread_mutex_lock(&coder->starting_time_mutex);
+	coder->starting_time = get_ms();
+	pthread_mutex_unlock(&coder->starting_time_mutex);
 }
 
 void	ft_sleep(long delay)

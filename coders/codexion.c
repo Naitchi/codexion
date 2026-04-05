@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:13:36 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/13 11:40:40 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/05 10:55:24 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	codexion(t_data *data)
 	pthread_t		*threads;
 	pthread_t		thread_monitoring;
 	t_thread_data	*threads_data;
-	int code;
+	int				code;
 
 	i = 0;
 	code = 0;

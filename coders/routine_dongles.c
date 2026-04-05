@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 17:58:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/04/03 17:58:39 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/05 11:01:37 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,27 @@ static int	get_coder_on_dongle(t_data *data, int index_coder, int index_dongle)
 
 bool	edf(t_data *data, int first, int second, int index_coder)
 {
-	int	other_first;
-	int	other_second;
+	int		other_first;
+	int		other_second;
 	long	elapsed_current;
 
 	if (data->scheduler_fifo)
 		return (true);
-	elapsed_current = get_passed_time(get_starting_time(&data->coders[index_coder]));
+	elapsed_current = get_p_t(get_s_t(&data->coders[index_coder]));
 	other_first = get_coder_on_dongle(data, index_coder, first);
 	other_second = get_coder_on_dongle(data, index_coder, second);
 	if (other_first >= 0 && other_first != index_coder
-		&& get_passed_time(get_starting_time(&data->coders[other_first]))
-		> elapsed_current)
+		&& get_p_t(get_s_t(&data->coders[other_first])) > elapsed_current)
 		return (false);
 	if (other_second >= 0 && other_second != index_coder
 		&& other_second != other_first
-		&& get_passed_time(get_starting_time(&data->coders[other_second]))
-		> elapsed_current)
+		&& get_p_t(get_s_t(&data->coders[other_second])) > elapsed_current)
 		return (false);
 	return (true);
 }
 
-static bool	can_take_dongles(t_data *data, int first, int second, int index_coder)
+static bool	can_take_dongles(t_data *data, int first, int second,
+		int index_coder)
 {
 	if (!data->dongle[second].available)
 		return (false);
@@ -66,11 +65,11 @@ static void	pick_dongles(t_data *data, int first, int second, int index_coder)
 {
 	set_starting_time(&data->coders[index_coder]);
 	data->dongle[second].available = !data->dongle[second].available;
-	printf("%ld %d has taken a dongle\n",
-		get_passed_time(data->starting_time), index_coder + 1);
+	printf("%ld %d has taken a dongle\n", get_p_t(data->starting_time),
+		index_coder + 1);
 	data->dongle[first].available = !data->dongle[first].available;
-	printf("%ld %d has taken a dongle\n",
-		get_passed_time(data->starting_time), index_coder + 1);
+	printf("%ld %d has taken a dongle\n", get_p_t(data->starting_time),
+		index_coder + 1);
 }
 
 int	take_dongles(t_data *data, int first, int second, int index_coder)

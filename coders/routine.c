@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 09:51:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/14 14:45:58 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/05 11:10:12 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static bool	keep_routine_running(t_data *data, int index_coder)
 {
 	if (get_stop(data))
 		return (false);
-	if (get_compilation_nbr(&data->coders[index_coder])
-		> data->number_of_compiles_required)
+	if (get_compi_nbr(&data->coders[index_coder]) > data->compiles_required)
 		return (false);
 	return (true);
 }

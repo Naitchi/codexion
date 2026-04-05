@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 12:32:19 by bclairot          #+#    #+#             */
-/*   Updated: 2026/03/03 17:17:13 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/05 11:10:30 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	verfication(int argc, char *argv[])
 				"Not enough/too much args.\nTo launch the program you "
 				"have to do:\n\t./codexion number_of_coders "
 				"time_to_burnout time_to_compile time_to_debug "
-				"time_to_refactor number_of_compiles_required "
+				"time_to_refactor compiles_required "
 				"dongle_cooldown scheduler\n"));
 	while (i < argc)
 	{
