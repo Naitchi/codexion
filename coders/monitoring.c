@@ -51,8 +51,7 @@ void	*monitoring(void *arg)
 	return (NULL);
 }
 
-int	cut_everything(pthread_t *threads, t_data *data,
-		pthread_t *monitoring_thread, int code)
+int	cut_everything(pthread_t *threads, pthread_t *monitoring_thread, int code)
 {
 	int	i;
 

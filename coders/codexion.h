@@ -24,8 +24,7 @@
 
 int		codexion(t_data *data);
 void	*monitoring(void *arg);
-int		cut_everything(pthread_t *threads, t_data *data,
-			pthread_t *monitoring_thread, int code);
+int		cut_everything(pthread_t *threads, pthread_t *monitoring_thread, int code);
 bool	edf(t_data *data, int first, int second, int index_coder);
 int		take_dongles(t_data *data, int first, int second, int index_coder);
 int		is_dongles_available(t_data *data, int index_coder);

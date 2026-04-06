@@ -37,7 +37,7 @@ static int	launch_coder_threads(pthread_t *threads,
 static int	cleanup_and_fail(pthread_t *threads, t_data *data,
 		t_thread_data *threads_data)
 {
-	cut_everything(threads, data, NULL, 1);
+	cut_everything(threads, NULL, 1);
 	free_all(threads, data, threads_data);
 	return (1);
 }
@@ -57,7 +57,7 @@ int	codexion(t_data *data)
 		return (cleanup_and_fail(threads, data, threads_data));
 	if (pthread_create(&thread_monitoring, NULL, monitoring, data) != 0)
 		return (cleanup_and_fail(threads, data, threads_data));
-	cut_everything(threads, data, &thread_monitoring, 0);
+	cut_everything(threads, &thread_monitoring, 0);
 	free_all(threads, data, threads_data);
 	return (0);
 }
