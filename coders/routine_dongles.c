@@ -36,11 +36,15 @@ bool	edf(t_data *data, int first, int second, int index_coder)
 	other_first = get_coder_on_dongle(data, index_coder, first);
 	other_second = get_coder_on_dongle(data, index_coder, second);
 	if (other_first >= 0 && other_first != index_coder
-		&& get_p_t(get_s_t(&data->coders[other_first])) > elapsed_current)
+		&& (get_p_t(get_s_t(&data->coders[other_first])) > elapsed_current
+			|| !edf_compilation_tie_break(data, index_coder,
+				other_first, other_second)))
 		return (false);
 	if (other_second >= 0 && other_second != index_coder
 		&& other_second != other_first
-		&& get_p_t(get_s_t(&data->coders[other_second])) > elapsed_current)
+		&& (get_p_t(get_s_t(&data->coders[other_second])) > elapsed_current
+			|| !edf_compilation_tie_break(data, index_coder,
+				other_first, other_second)))
 		return (false);
 	return (true);
 }
