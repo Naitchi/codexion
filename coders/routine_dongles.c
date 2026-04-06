@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 17:58:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/04/05 11:01:37 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/06 15:39:54 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,32 @@ static void	pick_dongles(t_data *data, int first, int second, int index_coder)
 {
 	set_starting_time(&data->coders[index_coder]);
 	data->dongle[second].available = !data->dongle[second].available;
+	pthread_mutex_lock(&data->print_mutex);
 	printf("%ld %d has taken a dongle\n", get_p_t(data->starting_time),
 		index_coder + 1);
 	data->dongle[first].available = !data->dongle[first].available;
 	printf("%ld %d has taken a dongle\n", get_p_t(data->starting_time),
 		index_coder + 1);
+	pthread_mutex_unlock(&data->print_mutex);
 }
 
 int	take_dongles(t_data *data, int first, int second, int index_coder)
 {
-	int	rslt;
-
-	rslt = 0;
-	if (!pthread_mutex_lock(&data->dongle[second].mutex_dongle)
-		&& !pthread_mutex_lock(&data->dongle[first].mutex_dongle))
+	if (pthread_mutex_lock(&data->dongle[first].mutex_dongle) != 0)
+		return (0);
+	if (pthread_mutex_lock(&data->dongle[second].mutex_dongle) != 0)
 	{
-		if (can_take_dongles(data, first, second, index_coder))
-		{
-			pick_dongles(data, first, second, index_coder);
-			rslt = 1;
-		}
+		pthread_mutex_unlock(&data->dongle[first].mutex_dongle);
+		return (0);
 	}
-	else
-		rslt = 0;
+	if (can_take_dongles(data, first, second, index_coder))
+	{
+		pick_dongles(data, first, second, index_coder);
+		pthread_mutex_unlock(&data->dongle[second].mutex_dongle);
+		pthread_mutex_unlock(&data->dongle[first].mutex_dongle);
+		return (1);
+	}
 	pthread_mutex_unlock(&data->dongle[second].mutex_dongle);
 	pthread_mutex_unlock(&data->dongle[first].mutex_dongle);
-	return (rslt);
+	return (0);
 }

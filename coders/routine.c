@@ -6,7 +6,7 @@
 /*   By: bclairot <bclairot@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 09:51:39 by bclairot          #+#    #+#             */
-/*   Updated: 2026/04/05 11:10:12 by bclairot         ###   ########.fr       */
+/*   Updated: 2026/04/06 15:44:22 by bclairot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	keep_routine_running(t_data *data, int index_coder)
 {
 	if (get_stop(data))
 		return (false);
-	if (get_compi_nbr(&data->coders[index_coder]) > data->compiles_required)
+	if (get_compi_nbr(&data->coders[index_coder]) >= data->compiles_required)
 		return (false);
 	return (true);
 }
@@ -43,6 +43,8 @@ void	*routine(void *arg)
 	{
 		if (is_dongles_available(data, index_coder))
 			compile_cycle(data, index_coder);
+		else
+			usleep(200);
 	}
 	return (NULL);
 }

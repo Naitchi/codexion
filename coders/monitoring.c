@@ -14,6 +14,11 @@
 
 static void	check_coder(t_data *d, int i, int *coders_done)
 {
+	if (get_compi_nbr(&d->coders[i]) >= d->compiles_required)
+	{
+		(*coders_done)++;
+		return ;
+	}
 	if (get_p_t(get_s_t(&d->coders[i])) >= d->timers.time_to_burnout)
 	{
 		pthread_mutex_lock(&d->print_mutex);
@@ -21,8 +26,6 @@ static void	check_coder(t_data *d, int i, int *coders_done)
 		pthread_mutex_unlock(&d->print_mutex);
 		set_stop(d);
 	}
-	if (get_compi_nbr(&d->coders[i]) >= d->compiles_required)
-		(*coders_done)++;
 }
 
 void	*monitoring(void *arg)
@@ -42,6 +45,7 @@ void	*monitoring(void *arg)
 			check_coder(d, i, &coders_done);
 			i++;
 		}
+		usleep(200);
 	}
 	set_stop(d);
 	return (NULL);
